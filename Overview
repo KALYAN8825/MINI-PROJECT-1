@@ -1,0 +1,91 @@
+### Mini-Project 1: Data Preprocessing and Feature Engineering (VIP)
+
+---
+
+#### **Objective:**
+The aim of this assignment is to apply data preprocessing and feature engineering techniques on a real-world dataset to prepare it for machine learning modeling.
+
+---
+
+### **1. Data Collection:**
+For this project, we will use the **Student Performance Factors** dataset. This dataset contains a mixture of numerical and categorical features related to student performance, such as `Hours_Studied`, `Attendance`, `Motivation_Level`, and `Exam_Score`.
+
+---
+
+### **2. Data Inspection:**
+- **Total Samples**: 6607
+- **Total Features**: 20
+- **Target Variable**: `Exam_Score` (numerical)
+
+**Initial Observations**:
+- The dataset contains both numerical and categorical features.
+- Several columns have missing values, especially in features like `Teacher_Quality`, `Parental_Education_Level`, and `Distance_from_Home`.
+
+---
+
+### **3. Data Preprocessing:**
+#### a. **Data Cleaning**:
+We identified missing values in several columns, particularly in:
+   - `Teacher_Quality` (78 missing values)
+   - `Parental_Education_Level` (90 missing values)
+   - `Distance_from_Home` (67 missing values)
+
+**Approach**:
+   - Categorical features were imputed using the mode (most frequent value) because these columns represent ordinal or nominal data.
+
+#### b. **Feature Scaling**:
+For numerical features, we used **Standardization** to normalize them, ensuring they have a mean of 0 and a standard deviation of 1. This was applied to columns like:
+   - `Hours_Studied`
+   - `Attendance`
+   - `Previous_Scores`
+   - `Exam_Score`
+   - `Sleep_Hours`
+   - `Tutoring_Sessions`
+   - `Physical_Activity`
+
+#### c. **Handling Categorical Data**:
+We applied **One-Hot Encoding** to categorical features, as they are nominal in nature (e.g., `Parental_Involvement`, `Motivation_Level`). This ensures that these features can be properly used by machine learning algorithms.
+
+---
+
+### **4. Feature Engineering:**
+We applied two feature engineering techniques to improve the dataset’s predictive power:
+
+#### a. **Engagement_Score**:
+   - Combined the features `Parental_Involvement`, `Motivation_Level`, and `Peer_Influence` into a new feature called `Engagement_Score`. This score represents overall student engagement, which is expected to be correlated with academic performance.
+
+#### b. **New Binary Feature - Distance_from_Home_Far**:
+   - Converted the `Distance_from_Home` feature into a binary feature (`Far` vs. `Near/Moderate`) to capture whether the student's distance from school might affect their performance.
+
+These engineered features enhance the dataset by providing new insights that might influence the target variable (`Exam_Score`).
+
+---
+
+### **5. Handling Imbalanced Data**:
+Upon reviewing the distribution of `Exam_Score`, the dataset does not suffer from significant class imbalance, as it is a continuous target variable. Therefore, no resampling techniques (e.g., SMOTE) were required for this task.
+
+---
+
+### **6. Data Transformation:**
+After completing the preprocessing and feature engineering, the dataset is saved as a CSV file for further use in machine learning tasks.
+
+---
+
+### **7. Analysis**:
+Here are some summary statistics and visualizations to demonstrate the impact of preprocessing:
+
+- **Distribution of Hours Studied (After Scaling)**:
+   - The `Hours_Studied` variable now follows a standardized distribution, which allows for improved performance in algorithms like gradient-based models (e.g., neural networks, SVMs).
+   
+- **New Feature Correlation**:
+   - The newly engineered feature, `Engagement_Score`, shows a positive correlation with `Exam_Score`, indicating that higher engagement is associated with better exam performance.
+
+- **Box Plot** of `Exam_Score` across different levels of `Engagement_Score` shows a clear trend, where students with higher engagement tend to have higher exam scores.
+
+---
+
+### **8. Conclusion**:
+The key takeaways from this project are:
+1. **Data preprocessing** (e.g., handling missing values, scaling, and encoding) is essential to prepare the dataset for modeling.
+2. **Feature engineering** plays a crucial role in enhancing the dataset’s representational power. By creating new, meaningful features like `Engagement_Score`, we can potentially improve the accuracy and interpretability of machine learning models.
+3. **Data transformation** and saving preprocessed datasets ensure that the clean data is ready for further analysis and modeling.
